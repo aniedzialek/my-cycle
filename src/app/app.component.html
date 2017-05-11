@@ -1,3 +1,53 @@
-<h1>
-  {{title}}
-</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<div class="container">
+  <div>
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+
+  <nav class="col-sm-3">
+    <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+      <li><a href="#showData" class="btn btn-info">Button</a></li>
+      <li><a href="#cyclesTable" class="btn btn-info">Data</a></li>
+      <li><a href="#footer" class="btn btn-info">Footer</a></li>
+    </ul>
+  </nav>
+
+  <div class="col-sm-9">
+    <button #showData class="btn btn-success" (click)="clickedButton()">Show me some data!</button>
+    <br> <br>
+    <table #cyclesTable *ngIf="displayTable" class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th>Lp</th>
+        <th>Dzień wystąpienia</th>
+        <!--<th>Liczba dni w miesiącu</th>-->
+        <!--<th>Liczba dni od końca miesiąca</th>-->
+        <th>Ile dni trwał</th>
+        <th>Dzień owulacji w cyklu</th>
+        <th>Dni dłużej/krócej niż ostatnio</th>
+        <th>Miesiąc</th>
+        <th>Rok</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cycle of cycles">
+        <!--<td *ngfor="let prop of cycle..."></td>-->
+        <td>{{ cycle.lp }}</td>
+        <td>{{ cycle.startOfPeriodDayOfMonth }}</td>
+        <!--<td>{{ cycle.monthLength }}</td>-->
+        <!--<td>{{ cycle.daysToEndOfTheMonthFromPeriodStart }}</td>-->
+        <td>{{ cycle.lengthOfCycle }}</td>
+        <td>{{ cycle.ovulationDayInCycle }}</td>
+        <td>{{ cycle.differenceOfLengthWithPreviousCycle }}</td>
+        <td>{{ cycle.month }}</td>
+        <td>{{ cycle.year }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--<input type="file" id="fileUpload" (change)="onChange($event)" onsubmit="clickedButton()"/>-->
